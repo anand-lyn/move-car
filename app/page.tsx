@@ -21,21 +21,21 @@ export default function Page({ searchParams }: {
     const { showToast, showLoading, hideLoading } = useFeedback();
 
     useEffect(() => {
-        const plateData = JSON.parse(localStorage.getItem(id) || '');
-        if (!plateData) {
+        const cache = localStorage.getItem(id);
+        if (!cache) {
             showLoading();
             getRequest('/api/notify/info?id=' + id).then(data => {
                 setPlate(data.plate);
                 setPhone(data.phone);
                 localStorage.setItem(id, JSON.stringify(data));
-                // hideLoading();
+                hideLoading();
             }).catch(err => {
                 console.log(err);
                 hideLoading();
-                // router.push('/404');
+                router.push('/404');
             });
         } else {
-            const { plate, phone } = plateData;
+            const { plate, phone } = JSON.parse(cache);
             setPlate(plate);
             setPhone(phone);
         }
@@ -68,7 +68,7 @@ export default function Page({ searchParams }: {
     };
 
     return (
-        <main className={styles.main} data-lk-theme="default">
+        <main className={styles.main} data-lk-theme='default'>
             {/*<h1>通知车主挪车</h1>*/}
             {plate &&
                 (<div className={styles.plate}>

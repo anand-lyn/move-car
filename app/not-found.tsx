@@ -5,7 +5,7 @@ import React from 'react';
 
 
 const NotFound: React.FC = () => {
-    const filePath = path.join(process.cwd(), 'public', '404.html');
+    const filePath = path.join(process.cwd(), 'public', '404-2.html');
     const htmlContent = fs.readFileSync(filePath, 'utf-8');
     return (
         <div dangerouslySetInnerHTML={{ __html: htmlContent }} />

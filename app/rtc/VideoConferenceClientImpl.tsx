@@ -30,6 +30,7 @@ export function VideoConferenceClientImpl(props: {
         typeof window !== 'undefined' ? decodePassphrase(window.location.hash.substring(1)) : undefined;
     const e2eeEnabled = !!(e2eePassphrase && worker);
     const roomOptions = useMemo((): RoomOptions => {
+        // @ts-ignore
         return {
             publishDefaults: {
                 videoSimulcastLayers: [VideoPresets.h540, VideoPresets.h216],
@@ -83,7 +84,7 @@ export function VideoConferenceClientImpl(props: {
                     process.env.NEXT_PUBLIC_SHOW_SETTINGS_MENU === 'true' ? SettingsMenu : undefined
                 }
             />
-            <DebugMode logLevel={LogLevel.debug} />
+            <DebugMode logLevel={process.env.NODE_ENV === 'production' ? LogLevel.warn : LogLevel.debug} />
         </LiveKitRoom>
     );
 }

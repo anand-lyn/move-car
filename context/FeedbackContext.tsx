@@ -20,14 +20,14 @@ export const FeedbackProvider: React.FC<{ children: ReactNode }> = ({
     const [loading, setLoading] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
-    const showToast = (message: string, duration = 5000) => {
+    const showToast = (message: string, duration = 2000) => {
         setToastMessage(message);
         setTimeout(() => {
             setToastMessage('');
         }, duration);
     };
 
-    const showLoading = (duration = 500) => {
+    const showLoading = (duration = 5000) => {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);

@@ -19,18 +19,17 @@ export async function GET(request: NextRequest, { params }: { params: { func: st
     if (!id) {
         return NextResponse.json(ApiRes.error('require id is empty'));
     }
-    const data = (({ plate, phone }) => ({ plate, phone }))(await getInfo(id));
-    if (!data.plate) {
+    const carInfo = await getInfo(id);
+    if (!carInfo) {
         return NextResponse.json(ApiRes.error('invalid request'));
     }
+    const data = (({ plate, phone }) => ({ plate, phone }))(carInfo);
     return NextResponse.json(ApiRes.success(data));
 }
 
 export async function POST(request: NextRequest, { params }: { params: { func: string } }) {
     const reqBody: any = await request.json();
     const id = reqBody.id;
-    console.log(reqBody);
-    console.log(id);
     if (!id) {
         return NextResponse.json(ApiRes.error('require id is empty'));
     }
@@ -56,7 +55,7 @@ export async function POST(request: NextRequest, { params }: { params: { func: s
                 const token = await createParticipantToken(randomString(6), roomName);
                 data = token;
                 let s = await createParticipantToken(id, roomName);
-                sendContent = `${request.headers.get('origin')}/custom?token=${s}`;
+                sendContent = `${request.headers.get('origin')}/rtc?token=${s}`;
                 break;
             case 'send':
                 sendContent = '您好，有人需要您挪车，请及时处理。';
@@ -96,12 +95,10 @@ function createParticipantToken(id: string, roomName: string) {
 async function rateLimit(id: string) {
     const key = `rate_limit_${id.toLowerCase()}`;
     let current = parseInt(await KvDB.get(key) || '0');
-    console.log(`current: ${current}`);
     if (current >= rateLimitMaxRequests) {
         return false;
     }
     await KvDB.put(key, ++current, { expirationTtl: rateLimitDelay });
-    console.log(`current++: ${current}`);
     return true;
 }
 

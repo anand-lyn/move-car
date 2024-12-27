@@ -66,6 +66,7 @@
     gap: 10px;
 }
 
+.previewBtn,
 .editBtn,
 .deleteBtn {
     padding: 5px 10px;
@@ -77,12 +78,20 @@
     transition: background-color 0.3s ease;
 }
 
+.previewBtn {
+    background-color: #1e1ee5;
+}
+
+.previewBtn:hover {
+    background-color: blue;
+}
+
 .editBtn {
     background-color: #4CAF50;
 }
 
 .editBtn:hover {
-    background-color: #45a049;
+    background-color: green;
 }
 
 .deleteBtn {
@@ -90,7 +99,7 @@
 }
 
 .deleteBtn:hover {
-    background-color: #e53935;
+    background-color: red;
 }
 
 .deleteBtn:focus,
