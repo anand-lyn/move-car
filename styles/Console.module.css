@@ -1,0 +1,162 @@
+/* components/Modal.module.css */
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.searchInput {
+    padding: 8px;
+    font-size: 14px;
+    width: 60%;
+}
+
+.addButton {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
+
+.tableContainer {
+    width: 100%;
+    max-height: 600px; /* 限定表格容器的最大高度 */
+    overflow-y: auto; /* 超出部分可滚动 */
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.table th, .table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+.table td {
+    font-size: 14px;
+}
+
+.tableActions {
+    display: flex;
+    gap: 10px;
+}
+
+.editBtn,
+.deleteBtn {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.editBtn {
+    background-color: #4CAF50;
+}
+
+.editBtn:hover {
+    background-color: #45a049;
+}
+
+.deleteBtn {
+    background-color: #f44336;
+}
+
+.deleteBtn:hover {
+    background-color: #e53935;
+}
+
+.deleteBtn:focus,
+.editBtn:focus {
+    outline: none;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inputGroup {
+    margin-bottom: 10px;
+}
+
+.modal input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal button {
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.modal button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.modal button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.modal button[type="button"] {
+    background-color: #f44336;
+    color: white;
+}
+
+.modal button[type="button"]:hover {
+    background-color: #e41e1e;
+}

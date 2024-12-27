@@ -1,0 +1,12 @@
+main = ".open-next/worker.js"
+name = "move-car"
+ 
+compatibility_date = "2024-12-23"
+compatibility_flags = ["nodejs_compat"]
+ 
+# The binding name must be "ASSETS" when the cache is enabled
+assets = { directory = ".open-next/assets", binding = "ASSETS" }
+
+[[kv_namespaces]]
+binding = "CARS_KV"
+id = "4f5d73fe84574ab6b9f3989ce757da22"
