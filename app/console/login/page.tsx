@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
 
     const router = useRouter();
 
-    const { showLoading, showToast } = useFeedback();
+    const { showLoading, showToast, hideLoading } = useFeedback();
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -22,6 +22,7 @@ const LoginPage: React.FC = () => {
         }).catch(err => {
             console.log(err);
             showToast(err.message);
+            hideLoading();
         });
     };
 
@@ -30,20 +31,20 @@ const LoginPage: React.FC = () => {
             <form onSubmit={handleLogin} style={styles.form}>
                 <h2 style={styles.title}>登录</h2>
                 <input
-                    type="text"
-                    placeholder="账号"
+                    type='text'
+                    placeholder='账号'
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     style={styles.input}
                 />
                 <input
-                    type="password"
-                    placeholder="密码"
+                    type='password'
+                    placeholder='密码'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     style={styles.input}
                 />
-                <button type="submit" style={styles.button}>
+                <button type='submit' style={styles.button}>
                     登录
                 </button>
             </form>
